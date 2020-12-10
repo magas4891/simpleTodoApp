@@ -1,0 +1,13 @@
+// Place all the styles related to the projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+#create-button {
+  position: fixed;
+  bottom: 2em;
+}
+
+#project-section {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,5 @@
+console.log("@@@@@@@@");
+var task = document.querySelector("#task-section");
+task.insertAdjacentHTML("beforeend", "<%= j render(@task) %>");
+var inp = document.querySelector("#task_description");
+inp.value = ('');

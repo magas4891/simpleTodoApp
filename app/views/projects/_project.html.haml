@@ -1,0 +1,10 @@
+%li
+  = project.name
+  #tasks
+    = form_with(model: Task.new, id: "new-task") do |f|
+      = f.text_field :description
+      = f.hidden_field :project_id, value: project.id
+      = f.submit :submit
+    - project.tasks.each do |task|
+      %ul
+        = render partial: 'tasks/task', locals: {task: task}
