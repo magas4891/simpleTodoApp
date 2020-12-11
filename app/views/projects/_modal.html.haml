@@ -6,10 +6,9 @@
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
       .modal-body
-        = form_for Project.new, id: "new-project" do |form|
+        = form_for Project.new, id: "new-project", remote: true do |form|
           = form.label :name
           = form.text_field :name
           .modal-footer
             = form.submit 'enter'
-            -#%button.btn.btn-secondary{"data-dismiss" => "modal", :type => "submit"} enter
             %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close

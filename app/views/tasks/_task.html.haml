@@ -1,3 +1,4 @@
 %ul
-  %li= task.description
-  %li= task.done
+  = form_with model: task do |f|
+    = f.text_field :description
+    = f.check_box :done

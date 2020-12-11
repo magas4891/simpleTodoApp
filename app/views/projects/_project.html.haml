@@ -1,6 +1,6 @@
 %li
   = project.name
-  = button_to 'X', project, method: :delete, remote: true
+  = button_to 'X', project_path(project), method: :delete, remote: true
   #tasks
     = form_with(model: Task.new, id: "new-task") do |f|
       = f.text_field :description
@@ -8,5 +8,4 @@
       = f.submit :submit
     - project.tasks.each do |task|
       %ul
-        %li= task.description
-        %li= task.done
+        = render partial: 'tasks/task', locals: {task: task}

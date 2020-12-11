@@ -1,8 +1,4 @@
 class ProjectsController < ApplicationController
-    def index
-        @projects = Project.all
-    end
-
     def create
         @project = Project.new(project_params)
         @project.save
@@ -12,8 +8,8 @@ class ProjectsController < ApplicationController
     end
 
     def destroy
+        project = Project.find(params[:id])
         project.destroy
-        @projects = Project.all
         respond_to do |format|
             format.js
         end
