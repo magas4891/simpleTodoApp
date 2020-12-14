@@ -1,8 +1,7 @@
 #main-section
-  #project-section
-    %ul#projects
-      = render @projects
-    %br
+  %ul#projects
+    = render @projects
+  %br
 #create-button
   = link_to 'Add project', '#',  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#exampleModal'}
 

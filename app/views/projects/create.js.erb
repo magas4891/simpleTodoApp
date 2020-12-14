@@ -1,5 +1,7 @@
 var project = document.querySelector("#projects");
 project.insertAdjacentHTML("beforeend", "<%= j render(@project) %>");
-var inp = document.querySelector("#project_name");
+
+var inp = document.querySelector("form#new_project > input#project_name");
 inp.value = ('');
+
 $('#exampleModal').modal('hide');

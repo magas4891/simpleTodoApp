@@ -1,11 +1,12 @@
-%li
+%li.input-group{ id: "project-#{project.id}" }
   = form_with(model: project, method: :patch) do |form|
-    = form.text_field :name
-    = form.submit :edit
-  = button_to 'X', project_path(project), method: :delete, remote: true
-  #tasks
+    = form.text_field :name, class: "form-control"
+    .input-group-append
+      = form.submit :edit
+      = button_to 'X', project_path(project), method: :delete, remote: true
+  #tasks.input-group
     = form_with(model: Task.new, id: "new-task") do |f|
-      = f.text_field :description
+      = f.text_field :description, class: "form-control"
       = f.hidden_field :project_id, value: project.id
       = f.submit :submit
     - project.tasks.each do |task|
