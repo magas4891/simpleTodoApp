@@ -1,18 +1,19 @@
 class ProjectsController < ApplicationController
+    respond_to :js
+
     def create
         @project = Project.new(project_params)
         @project.save
-        respond_to do |format|
-            format.js
-        end
+    end
+
+    def update
+        project = Project.find(params[:id])
+        project.update(project_params)
     end
 
     def destroy
         project = Project.find(params[:id])
         project.destroy
-        respond_to do |format|
-            format.js
-        end
     end
 
     private

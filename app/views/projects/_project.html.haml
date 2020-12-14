@@ -1,5 +1,7 @@
 %li
-  = project.name
+  = form_with(model: project, method: :patch) do |form|
+    = form.text_field :name
+    = form.submit :edit
   = button_to 'X', project_path(project), method: :delete, remote: true
   #tasks
     = form_with(model: Task.new, id: "new-task") do |f|

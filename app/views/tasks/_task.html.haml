@@ -2,3 +2,4 @@
   = form_with model: task do |f|
     = f.text_field :description
     = f.check_box :done
+  = button_to 'X', task_path(task), method: :delete, remote: true
