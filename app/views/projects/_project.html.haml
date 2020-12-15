@@ -1,14 +1,18 @@
-%li.input-group{ id: "project-#{project.id}" }
+%li{ id: "project-#{project.id}" }
   = form_with(model: project, method: :patch) do |form|
-    = form.text_field :name, class: "form-control"
-    .input-group-append
-      = form.submit :edit
-      = button_to 'X', project_path(project), method: :delete, remote: true
-  #tasks.input-group
+    .input-group.mb-3
+      = form.text_field :name, class: "form-control border-primary", disabled: true
+      .input-group-append
+        = form.submit :edit, class: "btn btn-primary", :data => {:edit => "#{project.id}"}
+        = button_tag type: 'button', class: "btn btn-primary" do
+          = link_to 'X', project_path(project), class: 'text-white', method: :delete, remote: true
+  #tasks
     = form_with(model: Task.new, id: "new-task") do |f|
-      = f.text_field :description, class: "form-control"
-      = f.hidden_field :project_id, value: project.id
-      = f.submit :submit
+      .input-group.mb-3
+        = f.text_field :description, class: "form-control"
+        = f.hidden_field :project_id, value: project.id
+        .input-group-append
+          = f.submit :submit, class: "btn btn-primary"
     - project.tasks.each do |task|
       %ul
         = render partial: 'tasks/task', locals: {task: task}

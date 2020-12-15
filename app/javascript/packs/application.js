@@ -8,6 +8,8 @@ require("turbolinks").start();
 require("@rails/activestorage").start();
 require("channels");
 
+require("../js/custom");
+
 import jquery from 'jquery';
 window.$ = window.jquery = jquery;
 

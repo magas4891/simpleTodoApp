@@ -1,5 +1,9 @@
-%li
-  = form_with(model: task, id: "task-#{task.id}") do |f|
-    = f.text_field :description, class: "form-control"
-    = f.check_box :done
-  = button_to 'X', task_path(task), method: :delete, remote: true
+%li{ id: "task-#{task.id}" }
+  = form_with(model: task, method: :patch) do |f|
+    .input-group.mb-3
+      = f.check_box :done, class: "btn btn-primary"
+      = f.text_field :description, class: "form-control", disabled: true
+      .input-group-append
+        = f.submit :edit, class: "btn btn-primary"
+        = button_tag type: 'button', class: "btn btn-primary" do
+          = link_to 'X', task_path(task), class: 'text-white', method: :delete, remote: true
