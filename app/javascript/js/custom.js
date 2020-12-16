@@ -1,5 +1,6 @@
 $(document).on("click", ("input[data-project]"), function(event){
     event.preventDefault();
+    console.log($(this));
     const project_id = $(this).first().data("project");
     const project_input = $(`li#project-${project_id} input#project_name`);
     const project_input_value = project_input.val();
@@ -29,11 +30,22 @@ $(document).on("click", ("input[data-task]"), function(event){
 
 $(document).on("change", ("input:checkbox"), function(event){
     event.preventDefault();
-    console.log($(this).next());
-    const zz = $(this).next();
-    zz.css("color", "red");
+    const action = $(this).closest("form").attr("action");
+    const field = $(this).next();
+    const value = $(this).is(':checked');
 
+    sendAjax(action, 'task', 'done', value);
 });
+
+$( window ).on("load", function() {
+    $("input:checkbox").each(function () {
+        if ($(this).is(":checked")) {
+            $(this).next().addClass("border-success");
+        } else {
+            $(this).next().removeClass("border-success");
+        }
+    })
+})
 
 function sendAjax(action, mod, field, value) {
     $.ajax({
