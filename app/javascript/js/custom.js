@@ -1,17 +1,47 @@
-$(document).on("click", ("form"), function(event){
+$(document).on("click", ("input[data-project]"), function(event){
     event.preventDefault();
+    const project_id = $(this).first().data("project");
+    const project_input = $(`li#project-${project_id} input#project_name`);
+    const project_input_value = project_input.val();
 
-
-    // var proj_id = $(this).first().data("edit");
-    // var proj_inp = $(`li#project-${proj_id} input#project_name`);
-    // if (proj_inp.attr("disabled", true)) {
-    //     console.log("-------");
-    //     proj_inp.attr("disabled", false);
-    //     return false;
-    // }
-    // if (!proj_inp.attr("disabled")) {
-    //     console.log("+++++++");
-    //     proj_inp.parents('form').submit();
-    //     proj_inp.attr("disabled", true);
-    // }
+    if (project_input.attr("disabled")) {
+        project_input.attr("disabled", false);
+    } else {
+        project_input.attr("disabled", true);
+        sendAjax($(this).parents('form').attr('action'), 'project', 'name', project_input_value);
+    }
 });
+
+$(document).on("click", ("input[data-task]"), function(event){
+    event.preventDefault();
+    const task_id = $(this).first().data("task");
+    const action = $(this).parents('form').attr('action');
+    const task_input = $(`li#task-${task_id} input#task_description`);
+    const task_input_value = task_input.val();
+
+    if (task_input.attr("disabled")) {
+        task_input.attr("disabled", false);
+    } else {
+        task_input.attr("disabled", true);
+        sendAjax(action, 'task', 'description', task_input_value);
+    }
+});
+
+$(document).on("change", ("input:checkbox"), function(event){
+    event.preventDefault();
+    console.log($(this).next());
+    const zz = $(this).next();
+    zz.css("color", "red");
+
+});
+
+function sendAjax(action, mod, field, value) {
+    $.ajax({
+        url: action,
+        type: "PATCH",
+        data: {
+            [mod]: { [field]: value }
+        },
+        success: function(data) { $("ul#projects").html(data.html) }
+    })
+}

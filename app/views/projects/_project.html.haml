@@ -3,7 +3,7 @@
     .input-group.mb-3
       = form.text_field :name, class: "form-control border-primary", disabled: true
       .input-group-append
-        = form.submit :edit, class: "btn btn-primary", :data => {:edit => "#{project.id}"}
+        = form.submit :edit, class: "btn btn-primary", :data => {:project => "#{project.id}"}
         = button_tag type: 'button', class: "btn btn-primary" do
           = link_to 'X', project_path(project), class: 'text-white', method: :delete, remote: true
   #tasks

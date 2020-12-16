@@ -4,6 +4,6 @@
       = f.check_box :done, class: "btn btn-primary"
       = f.text_field :description, class: "form-control", disabled: true
       .input-group-append
-        = f.submit :edit, class: "btn btn-primary"
+        = f.submit :edit, class: "btn btn-primary", :data => { :task => "#{task.id}" }
         = button_tag type: 'button', class: "btn btn-primary" do
           = link_to 'X', task_path(task), class: 'text-white', method: :delete, remote: true

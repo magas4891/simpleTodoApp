@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
   
   private
   def set_projects
-    @projects = Project.all.order(created_at: :desc)
+    @projects = Project.all.order(created_at: :asc)
   end
 end
