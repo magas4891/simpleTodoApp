@@ -9,6 +9,7 @@ require("@rails/activestorage").start();
 require("channels");
 
 require("../js/custom");
+require("../js/dd");
 
 import jquery from 'jquery';
 window.$ = window.jquery = jquery;
