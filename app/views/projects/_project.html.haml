@@ -13,6 +13,6 @@
         = f.hidden_field :project_id, value: project.id
         .input-group-append
           = f.submit :submit, class: "btn btn-primary"
-    %ul#draggable.ui-state-highlight
-      - project.tasks.each do |task|
+    %ul#tasks-section
+      - project.tasks.sort{|a,b| a.position <=> b.position}.each do |task|
         = render partial: 'tasks/task', locals: {task: task}

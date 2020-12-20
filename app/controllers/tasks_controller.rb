@@ -3,12 +3,15 @@ class TasksController < ApplicationController
 
   def create
     project = Project.find(params[:task][:project_id])
-    task = project.tasks.create(task_params)
+    task = project.tasks.build(task_params)
+    task.position = project.task_counter
+    task.save!
   end
 
   def update
     task = Task.find(params[:id])
     task.update(task_params)
+    # @tasks = task.project.tasks.order(position: :asc)
   end
 
   def destroy

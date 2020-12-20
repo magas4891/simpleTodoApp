@@ -1,3 +1,4 @@
+// editing project
 $(document).on("click", ("input[data-project]"), function(event){
     event.preventDefault();
     const project_id = $(this).first().data("project");
@@ -12,6 +13,7 @@ $(document).on("click", ("input[data-project]"), function(event){
     }
 });
 
+// editing task
 $(document).on("click", ("input[data-task]"), function(event){
     event.preventDefault();
     const task_id = $(this).first().data("task");
@@ -28,6 +30,7 @@ $(document).on("click", ("input[data-task]"), function(event){
     }
 });
 
+//change "done"
 $(document).on("change", ("input:checkbox"), function(event){
     event.preventDefault();
     const action = $(this).closest("form").attr("action");
@@ -36,6 +39,7 @@ $(document).on("change", ("input:checkbox"), function(event){
     sendAjax(action, 'task', 'done', value);
 });
 
+// function that sends AJAX
 function sendAjax(action, mod, field, value) {
     $.ajax({
         url: action,

@@ -10,6 +10,7 @@ require("channels");
 
 require("../js/custom");
 require("../js/dd");
+require("../js/prior");
 
 import jquery from 'jquery';
 window.$ = window.jquery = jquery;
