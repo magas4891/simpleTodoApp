@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   def create
     project = Project.find(params[:task][:project_id])
     task = project.tasks.build(task_params)
+    pp ":"*50, project.task_counter
     task.position = project.task_counter
     task.save!
   end

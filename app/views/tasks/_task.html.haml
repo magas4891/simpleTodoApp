@@ -1,8 +1,7 @@
 %li{ id: "task-#{task.id}"}
   = form_with(model: task, method: :patch) do |f|
     .input-group.mb-3
-      = check_box_tag :done, task.done, false, class: "btn btn-primary", onclick: "setDone(event);"
-      -# = f.check_box :done, class: "btn btn-primary", onchange: "setDone(event);"
+      = f.check_box :done, class: "btn btn-primary"
       = f.text_field :description, class: "form-control #{'bg-success text-white' if task.done}", disabled: true
       .input-group-append
         = f.button :up, class: "btn btn-primary up", data: { position: "#{task.position}", project: "#{task.project_id}" }

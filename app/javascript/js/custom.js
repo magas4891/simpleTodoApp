@@ -30,7 +30,6 @@ $(document).on("click", ("input[data-task]"), function(event){
     }
 });
 
-//change "done"
 $(document).on("change", ("input:checkbox"), function(event){
     event.preventDefault();
     const action = $(this).closest("form").attr("action");

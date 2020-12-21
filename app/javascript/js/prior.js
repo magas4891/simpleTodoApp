@@ -1,13 +1,14 @@
 $(document).on("click", ".up", function(event) {
     event.preventDefault();
-    const currentPosition = $(this).first().data("position");
+    const currentPosition = $(this).data("position");
+    const project = $(this).data("project");
     let nextPosition;
     if (currentPosition !== 0) {
         nextPosition = currentPosition - 1;
     } else {
         return;
     }
-    const nextElement = $(".up[data-position=" + nextPosition + "]");
+    const nextElement = $(".up[data-project=" + project + "][data-position=" + nextPosition + "]");
     const action = $(this).closest("form").attr("action");
     const action2 = nextElement.closest("form").attr("action");
     sendAjax(action, "task", "position", nextPosition)
@@ -16,8 +17,8 @@ $(document).on("click", ".up", function(event) {
 
 $(document).on("click", ".down", function(event) {
     event.preventDefault();
-    const currentPosition = $(this).first().data("position");
-    const project = $(this).first().data("project");
+    const currentPosition = $(this).data("position");
+    const project = $(this).data("project");
     const btnSelector = $(".down[data-project=" + project + "]");
     let nextPosition;
     if (currentPosition !== (btnSelector.length - 1)) {
@@ -25,7 +26,7 @@ $(document).on("click", ".down", function(event) {
     } else {
         return;
     }
-    const nextElement = $(".down[data-position=" + nextPosition + "]");
+    const nextElement = $(".up[data-project=" + project + "][data-position=" + nextPosition + "]");
     const action = $(this).closest("form").attr("action");
     const action2 = nextElement.closest("form").attr("action");
     sendAjax(action, "task", "position", nextPosition)
