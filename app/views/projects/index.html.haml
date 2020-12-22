@@ -3,7 +3,8 @@
     = render @projects
   %br
 #create-button
-  = link_to 'Add project', '#',  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#exampleModal'}
+  = button_tag 'Add project', { class: "btn btn-primary", type: 'button', remote: true, data: { toggle: "modal", target: '#exampleModal' } }
+  -# = link_to 'Add project', '#',  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#exampleModal'}
 
 / Modal
 #modal-window
