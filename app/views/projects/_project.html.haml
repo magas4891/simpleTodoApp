@@ -1,5 +1,6 @@
 %li{ id: "project-#{project.id}" }
   = form_with(model: project, method: :patch) do |form|
+    = form.date_field :deadline
     .input-group.mb-3
       = form.text_field :name, class: "form-control border-primary", disabled: true
       .input-group-append
