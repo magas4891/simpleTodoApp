@@ -4,17 +4,13 @@ body {
   background-color: beige;
 }
 
-//.container {
-//  background-color: darkgray;
-//}
-
 ul {
   list-style-type: none;
   padding: 0;
 }
 
 input[type=text]:disabled {
-  background-color: grey;
+  background-color: transparent;
   color: white;
 }
 
@@ -31,3 +27,28 @@ div#main-section {
 ul#projects > li {
   padding: 20px;
 }
+
+.project {
+  border: 1px solid navy;
+  margin-bottom: 20px;
+}
+
+.project-control {
+  display: none;
+}
+
+.form-header {
+  background-color: royalblue;
+  margin: -20px -20px 20px -20px;
+  height: 4rem;
+}
+
+.form-header:hover div.project-control {
+  //transition: 2s ease-out;
+  display: flex;
+}
+
+.form-control {
+  border: 1px solid transparent;
+}
+

@@ -47,9 +47,9 @@ $(window).on("load ajaxStop", function() {
         const today = new Date();
         const deadline = new Date($(this).val());
         if (today < deadline) {
-            $(this.form).find("input#project_name").removeClass("bg-danger");
+            $(this.form).css("background-color", "royalblue");
         } else {
-            $(this.form).find("input#project_name").addClass("bg-danger");
+            $(this.form).css("background-color", "red");
         }
     });
 });

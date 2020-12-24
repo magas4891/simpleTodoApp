@@ -1,15 +1,16 @@
-%li{ id: "project-#{project.id}" }
-  = form_with(model: project, method: :patch) do |form|
+%li.project{ id: "project-#{project.id}" }
+  = form_with(model: project, method: :patch, class: "form-header d-flex align-items-center") do |form|
     = form.date_field :deadline
-    .input-group.mb-3
-      = form.text_field :name, class: "form-control border-primary", disabled: true
-      .input-group-append
-        = form.submit :edit, class: "btn btn-primary", :data => {:project => "#{project.id}"}
-        = button_tag type: 'button', class: "btn btn-primary" do
-          = link_to 'X', project_path(project), class: 'text-white', method: :delete, remote: true
+    .input-group
+      = form.text_field :name, class: "form-control", disabled: true
+      .project-control
+        = form.submit :edit, class: "btn", :data => {:project => "#{project.id}"}
+        = button_tag type: 'button', class: "btn" do
+          = link_to project_path(project), class: 'text-white', method: :delete, remote: true do
+            %i.glyphicon.glyphicon-play
   #tasks
     = form_with(model: Task.new, id: "new-task") do |f|
-      .input-group.mb-3
+      .input-group
         = f.text_field :description, class: "form-control"
         = f.hidden_field :project_id, value: project.id
         .input-group-append
