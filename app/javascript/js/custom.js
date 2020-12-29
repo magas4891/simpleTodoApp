@@ -1,5 +1,5 @@
 // editing name of the project
-$(document).on("click", ("input[data-project]"), function(event){
+$(document).on("click", ("#name-edition"), function(event){
     event.preventDefault();
     const project_id = $(this).data("project");
     const project_input = $(`li#project-${project_id} input#project_name`);
@@ -15,7 +15,7 @@ $(document).on("click", ("input[data-project]"), function(event){
 });
 
 // edit deadline of the project
-$(document).on("change", ("input#project_deadline"), function(event) {
+$(document).on("change", ("[id^='datepicker']"), function(event) {
     event.preventDefault();
     const action = $(this).closest("form").attr("action");
     const value = $(this).val();
@@ -24,7 +24,7 @@ $(document).on("change", ("input#project_deadline"), function(event) {
 });
 
 // editing description of the task
-$(document).on("click", ("input[data-task]"), function(event){
+$(document).on("click", ("button[data-task]"), function(event){
     event.preventDefault();
     const task_id = $(this).data("task");
     const action = $(this).parents('form').attr('action');
@@ -34,7 +34,6 @@ $(document).on("click", ("input[data-task]"), function(event){
     if (task_input.attr("disabled")) {
         task_input.attr("disabled", false);
     } else {
-        console.log(task_input);
         task_input.attr("disabled", true);
         sendAjax(action, 'task', 'description', task_input_value);
     }
@@ -42,14 +41,14 @@ $(document).on("click", ("input[data-task]"), function(event){
 
 // signals that deadline is today or has already passed
 $(window).on("load ajaxStop", function() {
-    const projectDeadlines = $("input#project_deadline");
+    const projectDeadlines = $("[id^='datepicker']");
     projectDeadlines.each(function() {
         const today = new Date();
         const deadline = new Date($(this).val());
-        if (today < deadline) {
-            $(this.form).css("background-color", "royalblue");
-        } else {
+        if (today > deadline) {
             $(this.form).css("background-color", "red");
+        } else {
+            $(this.form).css("background-color", "");
         }
     });
 });
@@ -72,6 +71,9 @@ function sendAjax(action, mod, field, value) {
         data: {
             [mod]: { [field]: value }
         },
-        success: function(data) { $("ul#projects").html(data.html) }
+        success: function(data) {
+            // console.log("!!!!" + data);
+            // $("ul#tasks-section").html(data.html)
+        }
     });
 }

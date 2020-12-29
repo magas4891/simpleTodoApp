@@ -1,23 +1,26 @@
 class TasksController < ApplicationController
-  respond_to :js
+  # respond_to :js
 
   def create
-    project = Project.find(params[:task][:project_id])
-    task = project.tasks.build(task_params)
-    pp ":"*50, project.task_counter
-    task.position = project.task_counter
+    @project = Project.find(params[:task][:project_id])
+    task = @project.tasks.build(task_params)
+    task.position = @project.task_counter
     task.save!
+    @tasks = @project.tasks.order(position: :asc)
   end
 
   def update
     task = Task.find(params[:id])
     task.update(task_params)
-    # @tasks = task.project.tasks.order(position: :asc)
+    @project = task.project
+    @tasks = task.project.tasks.order(position: :asc)
   end
 
   def destroy
     task = Task.find(params[:id])
     task.destroy
+    @project = task.project
+    @tasks = task.project.tasks.order(position: :asc)
   end
 
   private

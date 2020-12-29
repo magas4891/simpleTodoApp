@@ -1,11 +1,14 @@
 %li{ id: "task-#{task.id}"}
   = form_with(model: task, method: :patch) do |f|
-    .input-group.mb-3
-      = f.check_box :done, class: "btn btn-primary"
-      = f.text_field :description, class: "form-control #{'bg-success text-white' if task.done}", disabled: true
-      .input-group-append
-        = f.button :up, class: "btn btn-primary up", data: { position: "#{task.position}", project: "#{task.project_id}" }
-        = f.button :down, class: "btn btn-primary down", data: { position: "#{task.position}", project: "#{task.project_id}" }
-        = f.submit :edit, class: "btn btn-primary", :data => { :task => "#{task.id}" }
-        = button_tag type: 'button', class: "btn btn-primary" do
-          = link_to 'X', task_path(task), class: 'text-white', method: :delete, remote: true
+    .input-group
+      = f.check_box :done, class: 'm-auto '#, class: "btn btn-primary"
+      = f.text_field :description, class: "form-control text-secondary", disabled: true
+      .task-control
+        = button_tag(class: 'btn text-secondary up', data: { position: "#{task.position}", project: "#{task.project_id}" }) do
+          %i.fas.fa-chevron-up
+        = button_tag(class: 'btn text-secondary down', data: { position: "#{task.position}", project: "#{task.project_id}" }) do
+          %i.fas.fa-chevron-down
+        = button_tag(class: 'btn text-secondary', data: { task: "#{task.id}" }) do
+          %i.fas.fa-edit
+        = link_to task_path(task), class: 'btn text-secondary', method: :delete, remote: true do
+          %i.fas.fa-trash-alt

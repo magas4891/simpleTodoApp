@@ -1,4 +1,2 @@
-$('#projects').html("<%= j render(@projects) %>");
-$('#task_description').each(function() {
-    $(this).val('');
-});
+$("li#project-<%= @project.id %> ul#tasks-section").html("<%= j render(@tasks) %>");
+$("li#project-<%= @project.id %> #new-task-description").val('');

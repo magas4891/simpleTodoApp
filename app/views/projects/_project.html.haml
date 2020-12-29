@@ -1,20 +1,20 @@
-%li.project{ id: "project-#{project.id}" }
-  = form_with(model: project, method: :patch, class: "form-header d-flex align-items-center") do |form|
-    = form.date_field :deadline
+%li.project.bg-light{ id: "project-#{project.id}" }
+  = form_with(model: project, method: :patch, class: "project-form-header d-flex align-items-center") do |form|
+    = form.text_field :deadline, id: "datepicker-#{project.id}", value: project.deadline&.strftime('%d.%m.%Y')
     .input-group
       = form.text_field :name, class: "form-control", disabled: true
       .project-control
-        = form.submit :edit, class: "btn", :data => {:project => "#{project.id}"}
-        = button_tag type: 'button', class: "btn" do
-          = link_to project_path(project), class: 'text-white', method: :delete, remote: true do
-            %i.glyphicon.glyphicon-play
+        = button_tag(class: "btn text-white", data: { project: "#{project.id}" }, id: "name-edition") do
+          %i.fas.fa-edit
+        = link_to project_path(project), class: 'btn text-white', method: :delete, remote: true do
+          %i.fas.fa-trash-alt
   #tasks
-    = form_with(model: Task.new, id: "new-task") do |f|
+    = form_with(model: Task.new, id: "new-task", class: 'task-form-header') do |f|
       .input-group
-        = f.text_field :description, class: "form-control"
+        = f.text_field :description, class: "form-control", id: "new-task-description"
         = f.hidden_field :project_id, value: project.id
         .input-group-append
-          = f.submit :submit, class: "btn btn-primary"
+          = f.submit 'Add Task', class: "btn btn-primary"
     %ul#tasks-section
       - project.tasks.sort{|a,b| a.position <=> b.position}.each do |task|
         = render partial: 'tasks/task', locals: {task: task}

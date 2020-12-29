@@ -40,7 +40,7 @@ function sendAjax(action, mod, field, value) {
         data: {
             [mod]: { [field]: value }
         },
-        success: function(data) { $("#tasks-section").html(data.html) }
+        // success: function(data) { $("#tasks-section").html(data.html) }
         // success: function(data) { $("ul#projects").html(data.html) }
     })
 }

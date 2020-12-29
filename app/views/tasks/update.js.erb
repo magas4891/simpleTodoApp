@@ -1,1 +1,1 @@
-$('#projects').html("<%= j render(@projects) %>");
+$("li#project-<%= @project.id %> ul#tasks-section").html("<%= j render(@tasks) %>");
