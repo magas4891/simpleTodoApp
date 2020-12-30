@@ -1,3 +1,5 @@
+$('#exampleModal').modal('hide');
+
 var project = document.querySelector("#projects");
 project.insertAdjacentHTML("beforeend", "<%= j render(@project) %>");
 
@@ -16,5 +18,3 @@ $("input#datepicker-<%= @project.id %>").datepicker({
 
 var inp = document.querySelector("form#new_project > input#project_name");
 inp.value = ('');
-
-$('#exampleModal').modal('hide');

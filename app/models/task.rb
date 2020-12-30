@@ -3,6 +3,9 @@ class Task < ApplicationRecord
 
   after_destroy :reorder
 
+  validates_presence_of :project, :description, :position
+  validates :description, uniqueness: { scope: :project }
+
   def reorder
     project.tasks.order(position: :asc).map.with_index do |val, ind|
       val.update(position: ind)
