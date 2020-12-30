@@ -37,9 +37,17 @@ div#main-section {
   display: none;
 }
 
+
+
 .project-form-header {
   background-color: #416ea9;
   height: 4rem;
+  padding-right: 10px;
+}
+
+.border-radius-5 {
+  border-top-right-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
 }
 
 .project-form-header:hover div.project-control {

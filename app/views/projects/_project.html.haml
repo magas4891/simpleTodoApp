@@ -1,8 +1,8 @@
 %li.project.bg-light{ id: "project-#{project.id}" }
   = form_with(model: project, method: :patch, class: "project-form-header d-flex align-items-center") do |form|
-    = form.text_field :deadline, id: "datepicker-#{project.id}", value: project.deadline&.strftime('%d.%m.%Y')
+    = form.text_field :deadline, id: "datepicker-#{project.id}", class: ".border-radius-5", value: project.deadline&.strftime('%d.%m.%Y')
     .input-group
-      = form.text_field :name, class: "form-control", disabled: true
+      = form.text_field :name, class: "form-control border-radius-5", disabled: true
       .project-control
         = button_tag(class: "btn text-white", data: { project: "#{project.id}" }, id: "name-edition") do
           %i.fas.fa-edit

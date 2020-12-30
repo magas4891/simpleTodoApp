@@ -7,6 +7,9 @@ $(document).on("click", ("#name-edition"), function(event){
     const action = $(this).parents('form').attr('action');
 
     if (project_input.attr("disabled")) {
+        $("input#project_name, input#task_description").each(function() {
+            $(this).attr("disabled", true);
+        });
         project_input.attr("disabled", false);
     } else {
         project_input.attr("disabled", true);
@@ -32,6 +35,9 @@ $(document).on("click", ("button[data-task]"), function(event){
     const task_input_value = task_input.val();
 
     if (task_input.attr("disabled")) {
+        $("input#project_name, input#task_description").each(function() {
+            $(this).attr("disabled", true);
+        });
         task_input.attr("disabled", false);
     } else {
         task_input.attr("disabled", true);
@@ -44,11 +50,18 @@ $(window).on("load ajaxStop", function() {
     const projectDeadlines = $("[id^='datepicker']");
     projectDeadlines.each(function() {
         const today = new Date();
-        const deadline = new Date($(this).val());
+        const tempDate = $(this).val().split(".");
+        const deadline = new Date(tempDate[2], tempDate[1]-1, tempDate[0]);
         if (today > deadline) {
             $(this.form).css("background-color", "red");
         } else {
             $(this.form).css("background-color", "");
+        }
+    });
+    const tasks = $("li[id^='task']");
+    tasks.each(function() {
+        if ($("input#task_done", this).is(':checked')) {
+            $(this).css("background-color", "paleturquoise");
         }
     });
 });
@@ -70,10 +83,6 @@ function sendAjax(action, mod, field, value) {
         type: "PATCH",
         data: {
             [mod]: { [field]: value }
-        },
-        success: function(data) {
-            // console.log("!!!!" + data);
-            // $("ul#tasks-section").html(data.html)
         }
     });
 }

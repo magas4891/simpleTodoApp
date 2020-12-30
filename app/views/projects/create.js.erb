@@ -1,10 +1,20 @@
 var project = document.querySelector("#projects");
 project.insertAdjacentHTML("beforeend", "<%= j render(@project) %>");
 
+$("input#datepicker-<%= @project.id %>").datepicker({
+    beforeShow: function() {
+        setTimeout(function(){
+            $('.ui-datepicker').css('z-index', 99999999999999);
+        }, 0);
+    },
+    showOn: "button",
+    buttonImage: "https://snipp.ru/demo/437/calendar.gif",
+    buttonImageOnly: true,
+    dateFormat: 'dd.mm.yy',
+    buttonText: "Choose deadline"
+});
 
 var inp = document.querySelector("form#new_project > input#project_name");
 inp.value = ('');
 
 $('#exampleModal').modal('hide');
-
-$("ul#projects li#project-<%= @project.id %>").html("<%= j render(@project) %>");
