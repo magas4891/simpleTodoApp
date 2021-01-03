@@ -1,8 +1,9 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!, :set_projects
   respond_to :js
 
   def create
-    @project = Project.new(project_params)
+    @project = current_user.projects.build(project_params)
     @project.save
   end
 
@@ -19,5 +20,9 @@ class ProjectsController < ApplicationController
   private
   def project_params
     params.require(:project).permit(:name, :deadline)
+  end
+
+  def set_projects
+    @projects = current_user.projects.order(created_at: :asc)
   end
 end

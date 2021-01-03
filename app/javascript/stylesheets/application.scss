@@ -1,6 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free";
+@import "project";
+@import "task";
+@import "datepicker";
 @import "login";
+@import "navbar";
 
 body {
   background-color: beige;
@@ -27,63 +31,16 @@ div#main-section {
   margin: 20px auto;
 }
 
-.project {
-  border: 1px solid navy;
-  margin-bottom: 20px;
-  border-radius: 0 0 10px 10px;
-  overflow: hidden;
-}
-
-.project-control, .task-control {
-  display: none;
-}
-
-
-
-.project-form-header {
-  background-color: #416ea9;
-  height: 4rem;
-  padding-right: 10px;
-}
-
-.border-radius-5 {
-  border-top-right-radius: 5px !important;
-  border-bottom-right-radius: 5px !important;
-}
-
-.project-form-header:hover div.project-control {
-  display: flex;
-}
-
-li[id^=task]:hover div.task-control {
-  display: flex;
-}
-
-.task-form-header {
-  background-color: #cecece;
-  padding: 10px 20px;
-}
-
 .form-control {
   border: 1px solid transparent;
 }
 
-input[id^=datepicker] {
-  display: none;
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-img.ui-datepicker-trigger {
-  margin: 0 10px;
-}
-
-ul#tasks-section li {
-  border-bottom: 2px solid grey;
-}
-
-ul#tasks-section li:last-child {
-  border-bottom: none;
-}
-
-li[id^=task] {
-  padding: 10px;
+input {
+  outline: none;
 }

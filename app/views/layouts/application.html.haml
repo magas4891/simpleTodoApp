@@ -9,9 +9,30 @@
     = stylesheet_link_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/redmond/jquery-ui.min.css'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    .navbar
+      .navbar-container
+        .navbar-widgets
+          = button_tag 'Widget 1', { class: "btn btn-primary" }
+          = button_tag 'Widget 2', { class: "btn btn-primary" }
+          = button_tag 'Widget 3', { class: "btn btn-primary" }
+          = button_tag 'Widget 4', { class: "btn btn-primary" }
+
+        .navbar-login
+          - if user_signed_in?
+            = button_to 'Sign Out', destroy_user_session_path, :class => "btn btn-primary", :method => "delete"
+          - else
+            = button_tag 'Sign In', { class: "btn btn-primary", type: 'button', remote: true, data: { toggle: "modal", target: '#loginModal' } }
+
     .container
       - if flash[:notice]
         .alert.alert-success= flash[:notice]
       - if flash[:alert]
         .alert.alert-danger= flash[:alert]
-      = yield
+      - if user_signed_in?
+        = yield
+      - else
+        = yield :home
+
+#modal-window
+  = render 'layouts/login_modal'
+  = render 'layouts/signup_modal'

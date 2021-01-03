@@ -11,7 +11,7 @@
   #tasks
     = form_with(model: Task.new, id: "new-task", class: 'task-form-header') do |f|
       .input-group
-        = f.text_field :description, class: "form-control", id: "new-task-description"
+        = f.text_field :description, class: "form-control new-task-description"#, id: "new-task-description"
         = f.hidden_field :project_id, value: project.id
         .input-group-append
           = f.submit 'Add Task', class: "btn btn-primary"

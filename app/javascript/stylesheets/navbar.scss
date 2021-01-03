@@ -1,0 +1,19 @@
+.navbar {
+  height: 80px;
+}
+
+.navbar-container {
+  background-color: lightgray;
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 5px 10px;
+}
+
+.navbar-widgets {
+  float: left;
+}
+
+.navbar-login {
+  float: right;
+}

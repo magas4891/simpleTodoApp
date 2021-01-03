@@ -1,0 +1,55 @@
+.project {
+  border: 1px solid navy;
+  margin-bottom: 20px;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+}
+
+.project-control, .task-control {
+  display: none;
+}
+
+.project-form-header {
+  background-color: #416ea9;
+  height: 4rem;
+  padding-right: 10px;
+}
+
+.border-radius-5 {
+  border-top-right-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+}
+
+.project-form-header:hover div.project-control {
+  display: flex;
+}
+
+.project-name-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  height: 50px;
+  background-color: #416ea9;
+  border-radius: 25px;
+
+  font-family: Ubuntu-Bold;
+  font-size: 15px;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+
+  &:hover {
+    background-color: #152c38;
+  }
+}

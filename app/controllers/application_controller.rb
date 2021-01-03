@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
-  before_action :set_projects
-  
-  private
-  def set_projects
-    @projects = Project.all.order(created_at: :asc)
+  def after_sign_in_path_for(resource)
+    projects_path
+  end
+
+  def after_sign_out_path_for(resource)
+    root_path
   end
 end

@@ -1,48 +1,23 @@
-.wrap-login100
-  %form.login100-form.validate-form
-    %span.login100-form-title.p-b-26
-      Welcome
-    %span.login100-form-title.p-b-48
-      %i.zmdi.zmdi-font
-    .wrap-input100.validate-input{"data-validate" => "Valid email is: a@b.c"}
-      %input.input100{:name => "email", :type => "text"}/
-      %span.focus-input100{"data-placeholder" => "Email"}
-    .wrap-input100.validate-input{"data-validate" => "Enter password"}
-      %span.btn-show-pass
-        %i.zmdi.zmdi-eye
-      %input.input100{:name => "pass", :type => "password"}/
-      %span.focus-input100{"data-placeholder" => "Password"}
-    .container-login100-form-btn
-      .wrap-login100-form-btn
-        .login100-form-bgbtn
-        %button.login100-form-btn
-          Login
-    .text-center.p-t-115
-      %span.txt1
-        Don’t have an account?
-      %a.txt2{:href => "#"}
-        Sign Up
-
-
-
--#%h2 Sign up
--#= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
--#  = render "users/shared/error_messages", resource: resource
--#  .field
--#    = f.label :email
--#    %br/
--#    = f.email_field :email, autofocus: true, autocomplete: "email"
--#  .field
--#    = f.label :password
--#    - if @minimum_password_length
--#      %em
--#        (#{@minimum_password_length} characters minimum)
--#    %br/
--#    = f.password_field :password, autocomplete: "new-password"
--#  .field
--#    = f.label :password_confirmation
--#    %br/
--#    = f.password_field :password_confirmation, autocomplete: "new-password"
--#  .actions
--#    = f.submit "Sign up"
--#= render "users/shared/links"
+.container-login
+  .wrap-login
+    %h2 Sign up
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = render "users/shared/error_messages", resource: resource
+      .field
+        = f.label :email
+        %br/
+        = f.email_field :email, autofocus: true, autocomplete: "email"
+      .field
+        = f.label :password
+        - if @minimum_password_length
+          %em
+            (#{@minimum_password_length} characters minimum)
+        %br/
+        = f.password_field :password, autocomplete: "new-password"
+      .field
+        = f.label :password_confirmation
+        %br/
+        = f.password_field :password_confirmation, autocomplete: "new-password"
+      .actions
+        = f.submit "Sign up"
+= render "users/shared/links"

@@ -1,0 +1,20 @@
+li[id^=task]:hover div.task-control {
+  display: flex;
+}
+
+.task-form-header {
+  background-color: #cecece;
+  padding: 10px 20px;
+}
+
+ul#tasks-section li {
+  border-bottom: 2px solid grey;
+}
+
+ul#tasks-section li:last-child {
+  border-bottom: none;
+}
+
+li[id^=task] {
+  padding: 10px;
+}
