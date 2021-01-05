@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-  # respond_to :js
 
   def create
     @project = Project.find(params[:task][:project_id])
