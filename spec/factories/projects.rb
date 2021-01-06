@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :project do
-    user { create(:user) }
-    name { Faker::TvShows::FamilyGuy.character }
+    user
+    name { Faker::Book.title }
     deadline { Faker::Date.in_date_period }
   end
 end
-

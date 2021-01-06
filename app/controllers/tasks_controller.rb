@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     @project = Project.find(params[:task][:project_id])
@@ -23,7 +26,8 @@ class TasksController < ApplicationController
   end
 
   private
+
   def task_params
-    params.require(:task).permit(:description, :done, :project_id, :position)
+    params.require(:task).permit(:description, :done, :position)
   end
 end

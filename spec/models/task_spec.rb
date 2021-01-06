@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
-  subject { FactoryBot.create(:task) }
+  subject { create(:task) }
   describe 'associations' do
     it { is_expected.to belong_to(:project) }
   end
@@ -10,11 +12,19 @@ RSpec.describe Task, type: :model do
     %i[description position].each do |attr|
       it { is_expected.to validate_presence_of(attr.to_sym) }
     end
-    it { is_expected.to validate_uniqueness_of(:description).scoped_to(:project_id) }
+    it do
+      is_expected.to validate_uniqueness_of(:description).scoped_to(:project_id)
+    end
   end
 
   describe 'columns' do
-    %i[id description done project_id position created_at updated_at].each do |field|
+    %i[id
+       description
+       done
+       project_id
+       position
+       created_at
+       updated_at].each do |field|
       it { is_expected.to have_db_column(field) }
     end
   end
