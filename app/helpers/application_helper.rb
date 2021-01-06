@@ -1,6 +1,6 @@
-module ApplicationHelper
-  # helper_method :resource_name, :resource, :devise_mapping, :resource_class
+# frozen_string_literal: true
 
+module ApplicationHelper
   def resource_name
     :user
   end
