@@ -10,9 +10,7 @@ require("channels");
 
 require("../js/datepicker");
 require("../js/custom");
-require("../js/dd");
 require("../js/prior");
-require("../js/login");
 
 require("jquery-ui");
 

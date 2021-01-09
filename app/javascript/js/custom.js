@@ -6,15 +6,7 @@ $(document).on("click", ("#name-edition"), function(event){
     const project_input_value = project_input.val();
     const action = $(this).parents('form').attr('action');
 
-    if (project_input.attr("disabled")) {
-        $("input#project_name, input#task_description").each(function() {
-            $(this).attr("disabled", true);
-        });
-        project_input.attr("disabled", false);
-    } else {
-        project_input.attr("disabled", true);
-        sendAjax(action, 'project', 'name', project_input_value);
-    }
+    editInput(project_input, action, 'project', 'name', project_input_value);
 });
 
 // edit deadline of the project
@@ -34,15 +26,7 @@ $(document).on("click", ("button[data-task]"), function(event){
     const task_input = $(`li#task-${task_id} input#task_description`);
     const task_input_value = task_input.val();
 
-    if (task_input.attr("disabled")) {
-        $("input#project_name, input#task_description").each(function() {
-            $(this).attr("disabled", true);
-        });
-        task_input.attr("disabled", false);
-    } else {
-        task_input.attr("disabled", true);
-        sendAjax(action, 'task', 'description', task_input_value);
-    }
+    editInput(task_input, action, 'task', 'description', task_input_value);
 });
 
 // signals that deadline is today or has already passed
@@ -85,4 +69,26 @@ function sendAjax(action, mod, field, value) {
             [mod]: { [field]: value }
         }
     });
+}
+
+// function that open input for new tasks
+function openInputs() {
+    $("input.new-task-description").map(function() {
+        $(this).attr("disabled", false)
+    });
+}
+
+function editInput(input, action, model, field, inputValue) {
+    if (input.attr("disabled")) {
+        $("input#project_name, input#task_description").each(function() {
+            $(this).attr("disabled", true);
+        });
+        input.attr("disabled", false);
+    } else {
+        input.attr("disabled", true);
+        $("input.new-task-description").map(function() {
+            $(this).attr("disabled", false)
+        });
+        sendAjax(action, model, field, inputValue);
+    }
 }
